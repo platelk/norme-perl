@@ -5,7 +5,7 @@
 ## Login   <platel_k@epitech.net>
 ##
 ## Started on  Sun Oct 28 06:03:58 2012 kevin platel
-## Last update Fri Nov  2 16:24:16 2012 kevin platel
+## Last update Fri Nov  2 16:24:38 2012 kevin platel
 ##
 
 #-----------------
@@ -166,7 +166,7 @@ sub analyse_header {
 	push(@error_file, $_[0]);
 	$note = $note - 20;
     }
-    if ($_[9] !~ m/\*\//) {
+    if ($_[9] !~ m/\*\/\n/) {
 	push(@error, "incorrect header.");
 	push(@error_line, 8);
 	push(@error_file, $_[0]);
