@@ -5,7 +5,7 @@
 ## Login   <platel_k@epitech.net>
 ##
 ## Started on  Sun Oct 28 06:03:58 2012 kevin platel
-## Last update Fri Nov  2 16:24:38 2012 kevin platel
+## Last update Fri Nov  2 16:52:07 2012 kevin platel
 ##
 
 #-----------------
@@ -95,10 +95,18 @@ for (my $a=0; $a < @files; $a++) {
 my $i = 0;
 foreach (@error) {
     my $line = $error_line[$i] + 1;
-    print "Error : $_ at line $line in file $error_file[$i].\n";
+    if ($color) {
+	print "\e[1;31mError \e[1;30m : \e[1;32m $_ a \e[1;30mline \e[1;34m$line \e[1;30min file \e[1;33m$error_file[$i].\n";
+    } else {
+	print "Error : $_ a line $line in file $error_file[$i].\n";
+    }
     $i++;
 }
-print "\nFinal note : $note\n";
+if ($color) {
+    print "\n\e[1;31m Final note : $note\e[1;30m\n";
+} else {
+    print "\n Final note : $note\n";
+}
 
 #__________________
 # sub function
