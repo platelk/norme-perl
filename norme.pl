@@ -5,7 +5,7 @@
 ## Login   <platel_k@epitech.net>
 ##
 ## Started on  Sun Oct 28 06:03:58 2012 kevin platel
-## Last update Fri Nov  2 14:17:24 2012 kevin platel
+## Last update Fri Nov  2 15:48:43 2012 kevin platel
 ##
 
 #-----------------
@@ -128,8 +128,31 @@ sub analyse_header {
 	push(@error_file, $_[0]);
 	$note = $note - 20;
     }
-    if ($_[5] !~ m/\*\* Login <[a-zA-Z0-9_]*\@epitech.net>/) {
-	print "test"
+    if ($_[5] !~ m/\*\* Login   <[a-zA-Z0-9_]*\@epitech\.net>\n/) {
+	push(@error, "incorrect header.");
+	push(@error_line, 4);
+	push(@error_file, $_[0]);
+	$note = $note - 20;
+    } else {
+	my $legal = 0;
+	my @log = split('<', $_[5]);
+	@log = split('@', $log[1]);
+	my $login = $log[0];
+	foreach (@user) {
+	    $legal = 1 if ($_ eq $login);
+	}
+	if ($legal == 0) {
+	    push(@error, "Triche !! -42.");
+	    push(@error_line, 4);
+	    push(@error_file, $_[0]);
+	    $note = $note - 42;
+	}
+    }
+    if ($_[6] !~ m/\*\*[ \t]*\n/) {
+	push(@error, "incorrect header.");
+	push(@error_line, 5);
+	push(@error_file, $_[0]);
+	$note = $note - 20;
     }
 }
 
